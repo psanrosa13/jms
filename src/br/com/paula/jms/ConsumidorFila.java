@@ -42,10 +42,7 @@ public class ConsumidorFila {
 			}
 			
 		});
-		
 				
-		new Scanner(System.in).nextLine();
-		
 		session.close();
 		connection.close();
 		context.close();

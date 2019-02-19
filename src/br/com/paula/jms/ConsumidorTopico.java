@@ -47,8 +47,6 @@ public class ConsumidorTopico {
 		});
 		
 				
-		new Scanner(System.in).nextLine();
-		
 		session.close();
 		connection.close();
 		context.close();
