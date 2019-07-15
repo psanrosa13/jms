@@ -19,9 +19,9 @@ public class ProdutorFila {
 		connection.start();
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		
-		Destination fila = (Destination) context.lookup("fila");
+		Destination destino = (Destination) context.lookup("fila");
 		
-		MessageProducer producer = session.createProducer(fila);
+		MessageProducer producer = session.createProducer(destino);
 		
 		Message message = session.createTextMessage("Mensagem 1");
 		producer.send(message);

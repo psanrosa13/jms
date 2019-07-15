@@ -10,7 +10,6 @@ import javax.naming.InitialContext;
 
 public class ProdutorTopico {
 
-	
 	public static void main(String[] args) throws Exception {
 		
 		InitialContext context = new InitialContext();
@@ -20,10 +19,11 @@ public class ProdutorTopico {
 		connection.start();
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		
-		Destination topico = (Destination) context.lookup("topico");
-		MessageProducer producer = session.createProducer(topico);
+		Destination destino = (Destination) context.lookup("topico");
 		
-		Message message = session.createTextMessage("Mensagem 1");
+		MessageProducer producer = session.createProducer(destino);
+		
+		Message message = session.createTextMessage("Mensagem 1 - Tópico");
         producer.send(message);
 		
 		session.close();

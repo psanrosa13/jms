@@ -1,7 +1,5 @@
 package br.com.paula.jms;
 
-import java.util.Scanner;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -9,6 +7,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
+import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
@@ -22,10 +21,12 @@ public class ConsumidorFila {
 		
 		Connection connection = factory.createConnection(); 
 		connection.start();
+		
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		
-		Destination fila = (Destination) context.lookup("fila");
-		MessageConsumer consumer = session.createConsumer(fila );
+		Queue queue = (Queue) context.lookup("fila");
+		
+		MessageConsumer consumer = session.createConsumer(queue);
 		
 		consumer.setMessageListener(new MessageListener() {
 

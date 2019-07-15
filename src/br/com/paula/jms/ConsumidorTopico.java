@@ -1,10 +1,7 @@
 package br.com.paula.jms;
 
-import java.util.Scanner;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
@@ -15,7 +12,7 @@ import javax.jms.Topic;
 import javax.naming.InitialContext;
 
 public class ConsumidorTopico {
-	@SuppressWarnings("resource")
+
 	public static void main(String[] args) throws Exception {
 		
 		InitialContext context = new InitialContext();
@@ -24,11 +21,12 @@ public class ConsumidorTopico {
 		Connection connection = factory.createConnection(); 
 		connection.setClientID("testeTopico");
 		connection.start();
+		
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		
 		Topic topico = (Topic) context.lookup("topico");
-		MessageConsumer consumer = session.createDurableSubscriber(topico, "assinante");
 		
+		MessageConsumer consumer = session.createDurableSubscriber(topico, "assinante");
 		
 		consumer.setMessageListener(new MessageListener() {
 
